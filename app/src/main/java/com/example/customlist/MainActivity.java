@@ -18,16 +18,16 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate : Started.");
 
         ListView mListView = (ListView) findViewById(R.id.listView);
-        Person one = new Person ("Repository 1","OwnerO1");
-        Person two = new Person ("Repository 2","OwnerO2");
-        Person three = new Person ("Repository 3","OwnerO3");
-        Person four = new Person ("Repository 4","OwnerO4");
-        Person five = new Person ("Repository 5","OwnerO5");
-        Person six = new Person ("Repository 6","OwnerO6");
-        Person seven = new Person ("Repository 7","OwnerO7");
-        Person eight = new Person ("Repository 8","OwnerO8");
-        Person nine = new Person ("Repository 9","OwnerO9");
-
+        Person one = new Person ("grit","mojombo");
+        Person two = new Person ("merb-core","wycats");
+        Person three = new Person ("rubinius","rubinius");
+        Person four = new Person ("god","mojombo");
+        Person five = new Person ("jsawesome","vanpelt");
+        Person six = new Person ("jspec","wycats");
+        Person seven = new Person ("exception_logger","defunkt");
+        Person eight = new Person ("ambition","defunkt");
+        Person nine = new Person ("restful-authentication","technoweenic");
+        
          ArrayList <Person> peopleList = new ArrayList<>()  ;
          peopleList.add(one);
         peopleList.add(two);
