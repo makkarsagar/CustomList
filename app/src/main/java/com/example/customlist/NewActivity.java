@@ -1,7 +1,5 @@
 package com.example.customlist;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,7 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
+import android.app.Activity;
+import android.os.Bundle;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,13 +25,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class NewActivity extends AppCompatActivity {
 
     private ListView lv;
 
-    String repname, owname;
+    String url;
 
     private static String JSON_URL = "https://api.github.com/repositories";
     ArrayList<HashMap<String, String>> List;
@@ -40,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_new);
 
         List = new ArrayList<>();
         lv = findViewById(R.id.listView);
 
-        GetData getdata = new GetData();
+        NewActivity.GetData getdata = new NewActivity.GetData();
         getdata.execute();
 
 
@@ -100,13 +98,13 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    repname = jsonObject1.getString("name");
-                    owname = jsonObject1.getString("full_name");
+                    url = jsonObject1.getString("url");
+
 
                     HashMap<String, String> PeopleList = new HashMap<>();
 
-                    PeopleList.put("name", repname);
-                    PeopleList.put("full_name", owname);
+                    PeopleList.put("url", url);
+
 
                     List.add(PeopleList);
 
@@ -117,23 +115,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             ListAdapter adapter = new SimpleAdapter(
-                    MainActivity.this,
+                    NewActivity.this,
                     List,
-                    R.layout.adapter_view_layout,
-                    new String[]{"name", "full_name"},
-                    new int[]{R.id.tv1, R.id.tv2});
+                    R.layout.activity_new,
+                    new String[]{"url"},
+                    new int[]{R.id.textView});
 
             lv.setAdapter(adapter);
-
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if (position==0){
-                          Intent intent = new Intent(view.getContext(),NewActivity.class);
-                            startActivity(intent); } }
-            });
-
-
         }
     }
 }
